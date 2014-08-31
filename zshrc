@@ -1,7 +1,11 @@
-source $HOME/.profile
-source $HOME/.private
+# This is my .zshrc
+# It builds off of @vilhalmer's:
+#   https://github.com/vilhalmer/System
 
 typeset -U PATH    #prevents duplicate PATH entries
+
+source $HOME/.profile
+source $HOME/.private
 
 HISTFILE=$HOME/.zsh_history
 setopt APPEND_HISTORY
@@ -15,14 +19,7 @@ setopt HIST_IGNORE_SPACE
 figlet -f univers Vignesh
 
 # Aliases
-alias src='source $HOME/.zshrc'
-alias wat='man'
-alias ffs='sudo'
-alias py='python'
-alias wifi='networksetup -setairportpower airport'
-alias gitjk="history 10 | tail -r | gitjk_cmd"
-alias zshrc='vim $HOME/.zshrc'
-alias vim='mvim'
+source $HOME/.aliases
 
 # zstyles
 zstyle ':completion:*' menu select
@@ -72,7 +69,6 @@ RPROMPT="%(?.%F{green}.%F{red}%? )%{%G•%}%f"
 # Prompt 
 build_prompt () {
     if $(git branch 1> /dev/null 2>&1); then
-        # We're in a git repo, so activate the special prompt.
         repo_name=$(basename $(git rev-parse --show-toplevel))
         branch=$(git rev-parse --abbrev-ref HEAD)
 
