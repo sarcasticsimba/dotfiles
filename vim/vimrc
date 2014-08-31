@@ -32,4 +32,3 @@ hi TabLineSel cterm=bold
 set showtabline=2
 
 nnoremap gg ggz.
-

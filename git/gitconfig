@@ -1,14 +1,14 @@
 # vim: set ft=gitconfig:
 
 [user]
-	user = ***REMOVED***
-	name = ***REMOVED***
+    user = ***REMOVED***
+    name = ***REMOVED***
 
 [core]
-	autocrlf = input
+    autocrlf = input
 
 [alias]
-	cam = commit -am
+    cam = commit -am
     cob = checkout -b
     fr = !git fetch origin && git rebase origin/master
     co = checkout
@@ -19,9 +19,8 @@
     alias = config --get-regexp alias
 
 [filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+    clean = git-media-clean %f
+    smudge = git-media-smudge %f
 
 [include]
     path = ~/.gitconfig.local
-

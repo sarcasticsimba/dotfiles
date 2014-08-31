@@ -35,4 +35,3 @@ build_prompt () {
 %(#.%B%F{red}.%F{magenta})>> %f%b"
     fi
 }
-
