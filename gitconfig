@@ -1,0 +1,29 @@
+# vim: set ft=gitconfig:
+
+[user]
+	user = ***REMOVED***
+	name = ***REMOVED***
+
+[core]
+	autocrlf = input
+
+[alias]
+	cam = commit -am
+    cob = checkout -b
+    fr = !git fetch origin && git rebase origin/master
+    co = checkout
+    br = branch
+    st = status
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    break = push origin master
+    nuke = reset --hard origin/master
+    undo = reset --hard
+    alias = config --get-regexp alias
+
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+
+[include]
+    path = ~/.gitconfig.local
+
