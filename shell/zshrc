@@ -91,4 +91,3 @@ wtoggle() {
     sleep 2
     wifi on 
 }
-
