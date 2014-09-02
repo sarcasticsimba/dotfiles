@@ -31,4 +31,6 @@ hi TabLine cterm=bold ctermfg=7
 hi TabLineSel cterm=bold
 set showtabline=2
 
+set lines=78 columns=300
+
 nnoremap gg ggz.
