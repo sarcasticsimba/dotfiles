@@ -17,6 +17,7 @@
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     undo = reset --hard
     alias = config --get-regexp alias
+    update = !git fetch origin && git rebase origin/$(git rev-parse --abbrev-ref HEAD)
 
 [filter "media"]
     clean = git-media-clean %f
