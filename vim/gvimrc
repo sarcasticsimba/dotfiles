@@ -1,2 +1,4 @@
 colorscheme desert
 set guifont=Menlo:h14
+set lines=78 columns=300
+
