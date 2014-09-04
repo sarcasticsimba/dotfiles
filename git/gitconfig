@@ -6,6 +6,7 @@
 
 [core]
     autocrlf = input
+    editor = /usr/bin/vim
 
 [alias]
     cam = commit -am
