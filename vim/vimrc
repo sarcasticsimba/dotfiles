@@ -26,6 +26,13 @@ set ignorecase
 set smartcase
 set hlsearch
 
+set splitright
+set splitbelow
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 hi TabLineFill ctermfg=7 ctermbg=7
 hi TabLine cterm=bold ctermfg=7
 hi TabLineSel cterm=bold
