@@ -1,10 +1,12 @@
 # vim: set ft=zsh:
 
-mkcd() {
+mkcd()
+{
     mkdir -p $1 && cd $1
 }
 
-cdls() {
+cdls()
+{
     if [[ -z $2 ]]; then
         cd $1 && ls
     else
@@ -12,17 +14,20 @@ cdls() {
     fi
 }
 
-wtoggle() {
+wtoggle()
+{
     wifi off
     sleep 2
     wifi on 
 }
 
-count() {
+count()
+{
     cat $1 | tr -d ' \n' | wc -c;
 }
 
-cgitignore() {
+cgitignore()
+{
     echo "*.*\n!*.c\n!*.h\n" >> .gitignore
 }
 
