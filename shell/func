@@ -18,6 +18,10 @@ wtoggle() {
     wifi on 
 }
 
+count() {
+    cat $1 | tr -d ' \n' | wc -c;
+}
+
 cgitignore() {
     echo "*.*\n!*.c\n!*.h\n" >> .gitignore
 }
