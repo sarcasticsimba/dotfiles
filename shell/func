@@ -18,3 +18,7 @@ wtoggle() {
     wifi on 
 }
 
+cgitignore() {
+    echo "*.*\n!*.c\n!*.h\n" >> .gitignore
+}
+
