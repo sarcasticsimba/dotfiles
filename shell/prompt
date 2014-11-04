@@ -35,3 +35,8 @@ build_prompt () {
 %(#.%B%F{red}.%F{magenta})>> %f%b"
     fi
 }
+
+# Display the exit status of the last command as a green/red status light, and
+# Print out the code if it's > 0.
+RPROMPT="%(?.%F{green}.%F{red}%? )%{%G•%}%f"
+
