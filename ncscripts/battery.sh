@@ -20,5 +20,3 @@ else
 fi
 
 echo "$battc$batt%$noc | $statc$status$noc | $time"
-# echo "$statc$status"
-# echo "$noc$time"
