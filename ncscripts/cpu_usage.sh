@@ -1,3 +1,5 @@
+sleep 0.5;
+
 ps xro %cpu=,comm= | while read cpu comm; ((i++<5)); do 
 
     int=$cpu
