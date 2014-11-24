@@ -31,3 +31,7 @@ cgitignore()
     echo "*.*\n!*.c\n!*.h\n" >> .gitignore
 }
 
+clip()
+{
+    cat $1 | pbcopy;
+}
