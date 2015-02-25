@@ -70,3 +70,4 @@ precmd () {
 # Functions
 source $HOME/.func
 
+export TERM="xterm"
