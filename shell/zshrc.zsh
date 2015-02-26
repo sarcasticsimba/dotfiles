@@ -4,20 +4,13 @@
 
 typeset -U PATH    #prevents duplicate PATH entries
 
-source $HOME/dotfiles/shell/profile.zsh
-source $HOME/dotfiles/shell/private.zsh
-
 HISTFILE=$HOME/.zsh_history
 setopt APPEND_HISTORY
 HISTSIZE=1200
 SAVEHIST=1000
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
-#setopt EXTENDED_HISTORY
 setopt HIST_IGNORE_SPACE
-
-# Aliases
-source $HOME/dotfiles/shell/aliases.zsh
 
 # zstyles
 zstyle ':completion:*' menu select
@@ -56,18 +49,14 @@ setopt auto_cd #Comment out if lame
 unsetopt rm_star_silent
 
 # Colors on OS X
-alias ls='ls -FG'
 export LSCOLORS=dxfxgxexbxchcxBxBxdhDh
 export CLICOLOR=1
 
-# Prompt 
-source $HOME/dotfiles/shell/prompt.zsh
-
-precmd () {
-    build_prompt
-}
-
-# Functions
-source $HOME/dotfiles/shell/func.zsh
-
 export TERM="xterm"
+
+source $HOME/dotfiles/shell/profile.zsh
+source $HOME/dotfiles/shell/prompt.zsh
+source $HOME/dotfiles/shell/vi_keys.zsh
+source $HOME/dotfiles/shell/aliases.zsh
+source $HOME/dotfiles/shell/func.zsh
+source $HOME/dotfiles/shell/private.zsh
