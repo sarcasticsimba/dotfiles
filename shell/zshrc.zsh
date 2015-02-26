@@ -4,8 +4,8 @@
 
 typeset -U PATH    #prevents duplicate PATH entries
 
-source $HOME/.profile
-source $HOME/.private
+source $HOME/dotfiles/shell/profile.zsh
+source $HOME/dotfiles/shell/private.zsh
 
 HISTFILE=$HOME/.zsh_history
 setopt APPEND_HISTORY
@@ -17,7 +17,7 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 
 # Aliases
-source $HOME/.aliases
+source $HOME/dotfiles/shell/aliases.zsh
 
 # zstyles
 zstyle ':completion:*' menu select
@@ -61,13 +61,13 @@ export LSCOLORS=dxfxgxexbxchcxBxBxdhDh
 export CLICOLOR=1
 
 # Prompt 
-source $HOME/.prompt
+source $HOME/dotfiles/shell/prompt.zsh
 
 precmd () {
     build_prompt
 }
 
 # Functions
-source $HOME/.func
+source $HOME/dotfiles/shell/func.zsh
 
 export TERM="xterm"
