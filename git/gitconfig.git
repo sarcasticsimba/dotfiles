@@ -19,6 +19,8 @@
     undo = reset --hard
     alias = config --get-regexp alias
     update = !git fetch origin && git rebase origin/$(git rev-parse --abbrev-ref HEAD) && git submodule update
+    ignored = !git ls-files $(git rev-parse --show-toplevel) --ignored --exclude-standard --others
+    untracked = !git ls-files $(git rev-parse --show-toplevel) --exclude-standard --others
 
 [filter "media"]
     clean = git-media-clean %f
