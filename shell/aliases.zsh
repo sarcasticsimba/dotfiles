@@ -5,7 +5,6 @@ alias ffs='sudo'
 alias py='python'
 alias ls='ls -FG'
 alias wifi='networksetup -setairportpower airport'
-alias gitjk="history 10 | tail -r | gitjk_cmd"
 alias zshrc='vim $HOME/.zshrc'
 alias sl='ls'
 alias watch='date +"%r"'
