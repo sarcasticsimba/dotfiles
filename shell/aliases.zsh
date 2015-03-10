@@ -11,5 +11,8 @@ alias watch='date +"%r"'
 alias battery='sh $HOME/dotfiles/ncscripts/battery.sh'
 alias notes='cd $HOME/Documents/notes'
 alias lynx='lynx -vikeys'
+
 alias clippwd='pwd | pbcopy'
 alias clipcd='cd $(pbpaste)'
+alias pwdclip='pwd | pbcopy'
+alias cdclip='cd $(pbpaste)'
