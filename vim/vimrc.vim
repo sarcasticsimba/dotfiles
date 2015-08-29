@@ -5,8 +5,9 @@ filetype off
 set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-    Plugin 'gmarik/Vundle.vim'
     Plugin 'jaxbot/semantic-highlight.vim'
+    Plugin 'gmarik/Vundle.vim'
+    Plugin 'keith/swift.vim'
 call vundle#end()
 
 set formatoptions+=1r
