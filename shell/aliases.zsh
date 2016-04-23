@@ -11,6 +11,8 @@ alias sl='ls'
 alias watch='date +"%r"'
 alias battery='sh $HOME/dotfiles/ncscripts/battery.sh'
 alias notes='cd $HOME/Documents/notes'
+alias tat='tmux attach -t'
+alias grep='grep --color'
 
 alias clippwd='pwd | pbcopy'
 alias clipcd='cd $(pbpaste)'
