@@ -7,6 +7,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
     Plugin 'gmarik/Vundle.vim'
     Plugin 'keith/swift.vim'
+    Plugin 'keith/tmux.vim'
 call vundle#end()
 
 set formatoptions+=1r
