@@ -21,3 +21,5 @@ alias cdclip='cd $(pbpaste)'
 
 alias wifi="networksetup -setairportpower $WIFI_PORT"
 alias wifinetwork="networksetup -getairportnetwork $WIFI_PORT"
+alias fdss="find . -name '*.DS_Store' -type f -delete -print"
+
