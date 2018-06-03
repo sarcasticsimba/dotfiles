@@ -13,6 +13,7 @@ alias battery='sh $HOME/dotfiles/ncscripts/battery.sh'
 alias notes='cd $HOME/Documents/notes'
 alias tat='tmux attach -t'
 alias grep='grep --color'
+alias w3m='w3m -no-mouse'
 
 alias clippwd='pwd | pbcopy'
 alias clipcd='cd $(pbpaste)'
