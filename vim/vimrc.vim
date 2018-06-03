@@ -5,6 +5,7 @@ filetype off
 set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+    Plugin 'derekwyatt/vim-scala'
     Plugin 'gmarik/Vundle.vim'
     Plugin 'keith/swift.vim'
     Plugin 'keith/tmux.vim'
@@ -50,6 +51,28 @@ set showtabline=2
 
 " Vertically center line when teleporting with gg
 nnoremap gg ggz.
+
+" Word Processing Mode, thanks @rectangleboy!
+" TODO:
+" [ ] Wrap at 80 characters without inserting linebreaks, and as I type
+func! DocumentEditMode()
+    setlocal formatoptions=1
+    setlocal noexpandtab
+    map j gj
+    map k gk
+    setlocal spell spelllang=en_us
+    setlocal complete+=s
+    setlocal wrap
+    setlocal linebreak
+    setlocal nolist
+    setlocal wrapmargin=0
+
+    setlocal textwidth=80
+    setlocal formatoptions-=t
+    setlocal formatoptions-=l
+    setlocal wrap linebreak nolist
+endfu
+com! Docs call DocumentEditMode()
 
 " Use a line when in insert mode, and a block when not
 if exists('$TMUX')
