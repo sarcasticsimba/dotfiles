@@ -1,9 +1,5 @@
 # vim: set ft=gitconfig:
 
-[user]
-    user = ***REMOVED***
-    name = ***REMOVED***
-
 [core]
     autocrlf = input
     editor = /usr/bin/vim
