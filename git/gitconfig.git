@@ -5,19 +5,75 @@
     editor = /usr/bin/vim
 
 [alias]
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-    update = !git fetch origin && git rebase origin/$(git rev-parse --abbrev-ref HEAD) && git submodule update
+    ###########################
+    # Informational aliases
+    ###########################
     ignored = !git ls-files $(git rev-parse --show-toplevel) --ignored --exclude-standard --others
     untracked = !git ls-files $(git rev-parse --show-toplevel) --exclude-standard --others
-    ud = !git fetch origin && git rebase origin/develop
-    um = !git fetch origin && git rebase origin/master
+
+    # Pretty print succinct git log
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+
+    # List aliases
     alias = config --get-regexp alias
+
+
+    ######################
+    # Updating aliases
+    ######################
+    update = !git fetch origin && git rebase origin/$(git rev-parse --abbrev-ref HEAD) && git submodule update
     undo = reset --hard
+
+    # Update from origin/master
+    um = !git fetch origin && git rebase origin/master && git submodule update
+    # Update from upstream/master
+    uum = !git fetch upstream && git rebase upstream/master && git submodule update
+    # Update from upstream/<current branch>
+    uu = !git fetch upstream && git rebase upstream/$(git rev-parse --abbrev-ref HEAD) && git submodule update
+
+    # Squish all current changes into previous commit
+    shit = commit -a --amend --no-edit
+
+    # Squish all untracked files into previous commit
+    gfdi = !git add . && git commit --amend --no-edit
+
+    # `git shit' followed by a force push of the current branch into the origin
+    # remote. For quickly updating a PR with a minute change that doesn't really
+    # deserve its own commit.
+    youdidntseeanything = !git commit -a --amend --no-edit && git push origin +$(git rev-parse --abbrev-ref HEAD)
+
+    ######################
+    # Laziness aliases
+    ######################
     cob = checkout -b
     cam = commit -am
     co = checkout
     br = branch
     st = status
+
+    #############################
+    # Inline function aliases
+    #############################
+    # Fetch a GitHub PR into a branch, assumes the remote is `upstream'
+    fpr = "!f () { \
+        if [[ -z \"$1\" ]]; then \
+            echo \"usage: $ git fpr <PR Number>\"; \
+            exit 1; \
+        fi; \
+        \
+        git fetch upstream pull/$1/head:pr-$1; \
+    }; f"
+
+    # Fetch a PR and checkout its branch
+    copr = "!f () { \
+        if [[ -z \"$1\" ]]; then \
+            echo \"usage: $ git copr <PR Number>\"; \
+            exit 1; \
+        fi; \
+        \
+        git fpr $1; \
+        git checkout pr-$1; \
+    }; f"
 
 [filter "media"]
     clean = git-media-clean %f
@@ -25,3 +81,9 @@
 
 [include]
     path = ~/.gitconfig.local
+
+# Use vimdiff as difftool
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
