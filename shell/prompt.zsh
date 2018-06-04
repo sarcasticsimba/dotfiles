@@ -10,17 +10,19 @@ precmd ()
 }
 
 build_prompt () {
+    # If inside a git repository
     if $(git branch 1> /dev/null 2>&1); then
         repo_name=$(basename $(git rev-parse --show-toplevel))
         branch=$(git rev-parse --abbrev-ref HEAD)
-
         subpath=$(git rev-parse --show-prefix)
-        [ -n "$subpath" ] && subpath="/$subpath" # Only display a slash if we're actually in a subdirectory.
+
+        # Only display a slash if we're actually in a subdirectory.
+        [ -n "$subpath" ] && subpath="/$subpath"
 
         git_untracked_new_files=$(git ls-files --others --exclude-standard | wc -w | tr -d ' \n')
-        git_tracked_new_files=$(git status | grep 'new file: ' | wc -l | tr -d ' \n')
-        git_modified_files=$(git status | grep 'modified: ' | wc -l | tr -d ' \n')
-        git_deleted_files=$(git status | grep 'deleted: ' | wc -l | tr -d ' \n')
+        git_tracked_new_files=$(git diff-index --cached $branch | wc -l | tr -d ' \n')
+        git_modified_files=$(git diff --name-only --diff-filter=M | wc -l | tr -d ' \n')
+        git_deleted_files=$(git diff --name-only --diff-filter=D | wc -l | tr -d ' \n')
 
         branch="%F{blue}$branch"
 
@@ -37,6 +39,8 @@ build_prompt () {
             PROMPT="%B%F{black}%f%b%F{yellow}$repo_name%f%B%F{black}$subpath ⋋ %b$branch%F{black} [ %b%F{green}+$git_tracked_new_files%f  %F{yellow}~$git_modified_files%f  %F{red}–$git_deleted_files%f | %F{cyan}+$git_untracked_new_files%f %F{black}] %1(j.%F{cyan}⎇  %j%f.)
 %(#.%B%F{red}.%F{magenta})>> %f%b"
         fi
+
+    # Not in a git repository
     else
         PROMPT="%B%(#.%F{red}ROOT%f.%F{black}%n)%F{black} @ %m : %f%b%F{yellow}%d%f %1(j.%F{cyan}⎇  %j%f.)
 %(#.%B%F{red}.%F{magenta})>> %f%b"
