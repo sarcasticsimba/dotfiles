@@ -34,6 +34,10 @@ set ignorecase
 set smartcase
 set hlsearch
 
+" Allow vim modelines
+set modeline
+set modelines=4
+
 " Split to the right and down
 set splitright
 set splitbelow
