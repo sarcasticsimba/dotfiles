@@ -36,7 +36,3 @@ else
     print -n -- "\E]50;CursorShape=0\C-G"
 fi
 
-precmd ()
-{
-    build_prompt
-}

@@ -2,6 +2,13 @@
 
 # zsh prompt, with git prompt
 
+bindkey -e
+
+precmd ()
+{
+    build_prompt
+}
+
 build_prompt () {
     if $(git branch 1> /dev/null 2>&1); then
         repo_name=$(basename $(git rev-parse --show-toplevel))

@@ -56,7 +56,6 @@ export TERM="xterm"
 
 source $HOME/dotfiles/shell/profile.zsh
 source $HOME/dotfiles/shell/prompt.zsh
-source $HOME/dotfiles/shell/vi_keys.zsh
 source $HOME/dotfiles/shell/aliases.zsh
 source $HOME/dotfiles/shell/func.zsh
 source $HOME/dotfiles/shell/private.zsh
