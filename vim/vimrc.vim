@@ -9,6 +9,9 @@ call vundle#begin()
     Plugin 'gmarik/Vundle.vim'
     Plugin 'keith/swift.vim'
     Plugin 'keith/tmux.vim'
+    Plugin 'elmcast/elm-vim'
+    Plugin 'neovimhaskell/haskell-vim'
+    Plugin 'tfnico/vim-gradle'
 call vundle#end()
 
 set formatoptions+=1r
