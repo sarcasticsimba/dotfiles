@@ -1,4 +1,4 @@
 private.zsh
 .DS_Store
 *.swp
-
+git/gitconfig.local.git
