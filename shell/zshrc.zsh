@@ -52,7 +52,7 @@ unsetopt rm_star_silent
 export LSCOLORS=dxfxgxexbxchcxBxBxdhDh
 export CLICOLOR=1
 
-export TERM="xterm"
+export TERM="xterm-256color"
 
 source $HOME/dotfiles/shell/profile.zsh
 source $HOME/dotfiles/shell/prompt.zsh
