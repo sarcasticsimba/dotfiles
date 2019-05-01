@@ -21,3 +21,8 @@ clip()
 {
     cat $1 | pbcopy;
 }
+
+fussh()
+{
+    eval `ssh-agent -s` && ssh-add
+}
