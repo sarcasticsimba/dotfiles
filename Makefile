@@ -10,7 +10,7 @@ all: git shell tmux vim other
 # Create+symlink gitconfig.local.git
 git:
 	@ln -s ${HOME}/dotfiles/git/gitconfig.git ${HOME}/.gitconfig
-	@touch ${HOME}/dotfiles/git/gitconfig.local.git
+	@echo "# vim: set ft=gitconfig:" > ${HOME}/dotfiles/git/gitconfig.local.git
 	@ln -s ${HOME}/dotfiles/git/gitconfig.local.git ${HOME}/.gitconfig.local
 	@echo "symlinked git stuff"
 
@@ -21,16 +21,19 @@ shell:
 	@chsh -s $$(which zsh)
 	@ln -s ${HOME}/dotfiles/shell/profile.zsh ${HOME}/.profile
 	@ln -s ${HOME}/dotfiles/shell/zshrc.zsh ${HOME}/.zshrc
-	@touch ${HOME}/dotfiles/shell/private.zsh
+	@echo "# vim: set ft=zsh:" > ${HOME}/dotfiles/shell/private.zsh
 	@echo "symlinked shell stuff"
 
+# Clone tmux plugin manager
 # Symlink .tmux.conf
 tmux:
+	@git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	@ln -s ${HOME}/dotfiles/tmux/tmux.conf ${HOME}/.tmux.conf
 	@echo "symlinked tmux stuff"
 
 # Install vundle
-# Symlink .vimrc and .gvimrc vim:
+# Symlink .vimrc and .gvimrc
+vim:
 	@git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	@ln -s ${HOME}/dotfiles/vim/vimrc.vim ${HOME}/.vimrc
 	@ln -s ${HOME}/dotfiles/vim/gvimrc.vim ${HOME}/.gvimrc
@@ -38,9 +41,11 @@ tmux:
 	@echo "symlinked vim stuff"
 
 other:
-	@echo "TODO: [ ] populate ./git/gitconfig.local.git"
 	@echo "TODO: [ ] Set terminal colors"
+	@echo "TODO: [ ] source .zshrc"
+	@echo "TODO: [ ] populate ./git/gitconfig.local.git"
 	@echo "TODO: [ ] Install gvim/macvim"
+	@echo "TODO: [ ] Run tmux, install plugins with <leader>-I"
 
 
 mac: brew karabiner
