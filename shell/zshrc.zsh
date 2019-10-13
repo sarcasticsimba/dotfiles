@@ -45,7 +45,7 @@ autoload -U colors && colors
 setopt completealiases
 setopt hist_ignore_dups
 setopt correct
-setopt auto_cd #Comment out if lame
+# setopt auto_cd # Comment out if lame
 unsetopt rm_star_silent
 
 # Colors on OS X
