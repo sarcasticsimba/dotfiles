@@ -47,11 +47,10 @@ mac: brew karabiner
 
 # Install brew
 brew:
-	@/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	@/usr/bin/ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Configures karabiner to turn fn+hjkl into arrow keys
 karabiner:
 	@cp ${HOME}/dotfiles/karabiner/fn-hjkl.json ${HOME}/.config/karabiner/assets/complex_modifications/fn-hjkl.json
 	@echo "TODO: [ ] Navigate to karabiner://karabiner/assets/complex_modifications/import?url=file%3A%2F%2F%2F%2FUsers%2Fvignesh%2F.config%2Fkarabiner%2Fassets%2Fcomplex_modifications%2Ffn-hjkl.json"
-	# TODO: resolve url above, write a shell script to find $HOME then replace / with %2F
 
