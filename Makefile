@@ -29,10 +29,12 @@ tmux:
 	@ln -s ${HOME}/dotfiles/tmux/tmux.conf ${HOME}/.tmux.conf
 	@echo "symlinked tmux stuff"
 
-# Symlink .vimrc and .gvimrc
-vim:
+# Install vundle
+# Symlink .vimrc and .gvimrc vim:
+	@git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	@ln -s ${HOME}/dotfiles/vim/vimrc.vim ${HOME}/.vimrc
 	@ln -s ${HOME}/dotfiles/vim/gvimrc.vim ${HOME}/.gvimrc
+	@vim +PluginInstall +qall
 	@echo "symlinked vim stuff"
 
 other:
