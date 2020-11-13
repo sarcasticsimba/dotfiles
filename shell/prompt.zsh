@@ -27,26 +27,26 @@ build_prompt () {
         branch="%F{blue}$branch"
 
         if [[ $git_tracked_new_files -eq 0 && $git_modified_files -eq 0 && git_deleted_files -eq 0 && $git_untracked_new_files -eq 0 ]] then
-            PROMPT="%B%F{black}%f%b%F{yellow}$repo_name%f%B%F{black}$subpath ⋋ %b$branch%F{black} [  ] %1(j.%F{cyan}⎇  %j%f.)
-%(#.%B%F{red}.%F{magenta})>> %f%b"
+            PROMPT="%B%F{black}%f%b%F{red}$repo_name%f%B%F{black}$subpath ⋋ %b$branch%F{black} [  ] %1(j.%F{yellow}⎇  %j%f.)
+%(#.%B%F{red}.%F{green})>> %f%b"
         elif [[ $git_tracked_new_files -eq 0 && $git_modified_files -eq 0 && git_deleted_files -eq 0 ]] then
-            PROMPT="%B%F{black}%f%b%F{yellow}$repo_name%f%B%F{black}$subpath ⋋ %b$branch%F{black} [ %F{cyan}+$git_untracked_new_files%f %F{black}] %1(j.%F{cyan}⎇  %j%f.)
-%(#.%B%F{red}.%F{magenta})>> %f%b"
+            PROMPT="%B%F{black}%f%b%F{red}$repo_name%f%B%F{black}$subpath ⋋ %b$branch%F{black} [ %F{cyan}+$git_untracked_new_files%f %F{black}] %1(j.%F{yellow}⎇  %j%f.)
+%(#.%B%F{red}.%F{green})>> %f%b"
         elif [[ $git_untracked_new_files -eq 0 ]] then
-            PROMPT="%B%F{black}%f%b%F{yellow}$repo_name%f%B%F{black}$subpath ⋋ %b$branch%F{black} [ %b%F{green}+$git_tracked_new_files%f  %F{yellow}~$git_modified_files%f  %F{red}–$git_deleted_files%f %F{black}] %1(j.%F{cyan}⎇  %j%f.)
-%(#.%B%F{red}.%F{magenta})>> %f%b"
+            PROMPT="%B%F{black}%f%b%F{red}$repo_name%f%B%F{black}$subpath ⋋ %b$branch%F{black} [ %b%F{green}+$git_tracked_new_files%f  %F{yellow}~$git_modified_files%f  %F{red}–$git_deleted_files%f %F{black}] %1(j.%F{yellow}⎇  %j%f.)
+%(#.%B%F{red}.%F{green})>> %f%b"
         else
-            PROMPT="%B%F{black}%f%b%F{yellow}$repo_name%f%B%F{black}$subpath ⋋ %b$branch%F{black} [ %b%F{green}+$git_tracked_new_files%f  %F{yellow}~$git_modified_files%f  %F{red}–$git_deleted_files%f | %F{cyan}+$git_untracked_new_files%f %F{black}] %1(j.%F{cyan}⎇  %j%f.)
-%(#.%B%F{red}.%F{magenta})>> %f%b"
+            PROMPT="%B%F{black}%f%b%F{red}$repo_name%f%B%F{black}$subpath ⋋ %b$branch%F{black} [ %b%F{green}+$git_tracked_new_files%f  %F{yellow}~$git_modified_files%f  %F{red}–$git_deleted_files%f | %F{cyan}+$git_untracked_new_files%f %F{black}] %1(j.%F{yellow}⎇  %j%f.)
+%(#.%B%F{red}.%F{green})>> %f%b"
         fi
 
     # Not in a git repository
     else
-        PROMPT="%B%(#.%F{red}ROOT%f.%F{black}%n)%F{black} @ %m : %f%b%F{yellow}%d%f %1(j.%F{cyan}⎇  %j%f.)
-%(#.%B%F{red}.%F{magenta})>> %f%b"
+        PROMPT="%B%(#.%F{red}ROOT%f.%F{black}%n)%F{black} @ %m : %f%b%F{red}%d%f %1(j.%F{yellow}⎇  %j%f.)
+%(#.%B%F{red}.%F{green})>> %f%b"
     fi
 }
 
 # Display the exit status of the last command as a green/red status light, and
 # Print out the code if it's > 0.
-RPROMPT="%(?.%F{green}.%F{red}%? )%{%G•%}%f"
+PROMPT="%(?.%F{green}.%F{red}%? )%{%G•%}%f"
