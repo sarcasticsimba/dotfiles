@@ -12,6 +12,10 @@ call vundle#begin()
     Plugin 'elmcast/elm-vim'
     Plugin 'neovimhaskell/haskell-vim'
     Plugin 'tfnico/vim-gradle'
+
+    " For markdown-preview, run `:call mkdp#util#install()'
+    " Usage: `:MarkdownPreview'
+    Plugin 'iamcco/markdown-preview.nvim'
 call vundle#end()
 
 set formatoptions+=1r
