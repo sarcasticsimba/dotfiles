@@ -50,6 +50,9 @@
     co = checkout
     br = branch
     st = status
+    au = update-index --skip-worktree
+    nau = update-index --no-skip-worktree
+    skipped = !git ls-files -v | grep ^S | awk '{print $2}'
 
     #############################
     # Inline function aliases
