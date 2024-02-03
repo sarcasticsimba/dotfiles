@@ -38,6 +38,8 @@ vim:
 	@ln -s ${HOME}/dotfiles/vim/vimrc.vim ${HOME}/.vimrc
 	@ln -s ${HOME}/dotfiles/vim/gvimrc.vim ${HOME}/.gvimrc
 	@vim +PluginInstall +qall
+	@mkdir -p ${HOME}/.config/nvim
+	@ln -s ${HOME}/dotfiles/vim/nvim.vim ${HOME}/.config/nvim/init.vim
 	@echo "symlinked vim stuff"
 
 other:
