@@ -22,34 +22,46 @@ build_prompt () {
         # Only display a slash if we're actually in a subdirectory.
         [ -n "$subpath" ] && subpath="/$subpath"
 
-        # Before pipe in prompt
         gsp=$(git status --porcelain --branch)
+
+
+        # Batch 1 in prompt - stage info
+        git_staged_modified_files=$(echo $gsp | grep "^M " | wc -l | awk '{print $1}')
+        git_double_modified_files=$(echo $gsp | grep "^MM" | wc -l | awk '{print $1}')
+        batch_1_sum=$((git_staged_modified_files + git_double_modified_files))
+
+        # Batch 2 in prompt - tracked file info
         git_tracked_new_files=$(echo $gsp | grep "^A " | wc -l | awk '{print $1}')
         git_modified_files=$(echo $gsp | grep "^ M" | wc -l | awk '{print $1}')
         git_deleted_files=$(echo $gsp | grep "^ D" | wc -l | awk '{print $1}')
+        batch_2_sum=$((git_tracked_new_files + git_modified_files + git_deleted_files))
 
-        # After pipe in prompt
+        # Batch 3 in prompt - other
         git_untracked_new_files=$(echo $gsp | grep "^??" | wc -l | awk '{print $1}')
-        git_staged_modified_files=$(echo $gsp | grep "^M " | wc -l | awk '{print $1}')
         git_assumed_unchanged=$(git ls-files -v | grep ^S | wc -l | awk '{print $1}')
-        git_double_modified_files=$(echo $gsp | grep "^MM" | wc -l | awk '{print $1}')
+        batch_3_sum=$((git_untracked_new_files + git_assumed_unchanged))
 
-        before_sum=$((git_tracked_new_files + git_modified_files + git_deleted_files))
-        after_sum=$((git_untracked_new_files + git_staged_modified_files + git_double_modified_files + git_assumed_unchanged))
 
         branch="%F{blue}$branch"
 
-        preamble="%B%F{black}%f%b%F{yellow}$repo_name%f%B%F{black}$subpath ⋋ %b$branch %F{black}%B[%b%f "
+        preamble="%B%F{black}%f%b%F{yellow}$repo_name%f%B%F{black}$subpath ⋋ %b$branch %F{black}%B[%b%f"
         body=""
         postamble=" %F{black}%B]%b%f %1(j.%F{cyan}⎇  %j%f.)"
 
-        if ((before_sum != 0)) then
-            body="%b%F{green}+$git_tracked_new_files%f  %F{yellow}~$git_modified_files%f  %F{red}–$git_deleted_files%f"
+        if ((batch_1_sum != 0)) then
+            body="$body %F{magenta}~$git_staged_modified_files%f  %F{yellow}≈$git_double_modified_files%f"
         fi
 
-        if ((after_sum != 0)) then
-            body="$body %F{black}%B|%b%f "
-            body="$body%F{cyan}+$git_untracked_new_files%f  %F{magenta}~$git_staged_modified_files%f  %F{yellow}≈$git_double_modified_files%f  %F{blue}⊘$git_assumed_unchanged%f"
+        if ((batch_2_sum != 0)) then
+            if ((batch_1_sum != 0)) then
+                body="$body %F{black}%B|%b%f"
+            fi
+            body="$body %b%F{green}+$git_tracked_new_files%f  %F{yellow}~$git_modified_files%f  %F{red}–$git_deleted_files%f"
+        fi
+
+        if ((batch_3_sum != 0)) then
+            body="$body %F{black}%B|%b%f"
+            body="$body %F{cyan}+$git_untracked_new_files%f  %F{blue}⊘$git_assumed_unchanged%f"
         fi
 
         PROMPT="$preamble$body$postamble$input_prompt"
