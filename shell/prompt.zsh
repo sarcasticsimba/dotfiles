@@ -30,10 +30,12 @@ build_prompt () {
 
         # After pipe in prompt
         git_untracked_new_files=$(echo $gsp | grep "^??" | wc -l | awk '{print $1}')
+        git_staged_modified_files=$(echo $gsp | grep "^M " | wc -l | awk '{print $1}')
         git_assumed_unchanged=$(git ls-files -v | grep ^S | wc -l | awk '{print $1}')
+        git_double_modified_files=$(echo $gsp | grep "^MM" | wc -l | awk '{print $1}')
 
         before_sum=$((git_tracked_new_files + git_modified_files + git_deleted_files))
-        after_sum=$((git_untracked_new_files + git_assumed_unchanged))
+        after_sum=$((git_untracked_new_files + git_staged_modified_files + git_double_modified_files + git_assumed_unchanged))
 
         branch="%F{blue}$branch"
 
@@ -46,10 +48,8 @@ build_prompt () {
         fi
 
         if ((after_sum != 0)) then
-            if ((before_sum != 0)) then
-                body="$body %F{black}%B|%b%f "
-            fi
-            body="$body%F{cyan}+$git_untracked_new_files%f  %F{blue}⊘$git_assumed_unchanged%f"
+            body="$body %F{black}%B|%b%f "
+            body="$body%F{cyan}+$git_untracked_new_files%f  %F{magenta}~$git_staged_modified_files%f  %F{yellow}≈$git_double_modified_files%f  %F{blue}⊘$git_assumed_unchanged%f"
         fi
 
         PROMPT="$preamble$body$postamble$input_prompt"
