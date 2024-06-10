@@ -1,9 +1,7 @@
-# This is my .zshrc
-# It builds off of @vilhalmer's:
-#   https://github.com/vilhalmer/System
+# Prevents duplicate PATH entries
+typeset -U PATH
 
-typeset -U PATH    #prevents duplicate PATH entries
-
+# History file
 HISTFILE=$HOME/.zsh_history
 setopt APPEND_HISTORY
 HISTSIZE=1200
@@ -45,15 +43,16 @@ autoload -U colors && colors
 setopt completealiases
 setopt hist_ignore_dups
 setopt correct
-# setopt auto_cd # Comment out if lame
 unsetopt rm_star_silent
+# setopt auto_cd  # Comment out if lame
 
-# Colors on OS X
+# Colors on macOS
 export LSCOLORS=dxfxgxexbxchcxBxBxdhDh
 export CLICOLOR=1
 
 export TERM="xterm-256color"
 
+# Source my other confs
 source $HOME/dotfiles/shell/profile.zsh
 source $HOME/dotfiles/shell/prompt.zsh
 source $HOME/dotfiles/shell/aliases.zsh
