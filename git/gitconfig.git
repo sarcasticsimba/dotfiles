@@ -57,14 +57,14 @@
     #############################
     # Inline function aliases
     #############################
-    # Fetch a GitHub PR into a branch, assumes the remote is `upstream'
+    # Fetch a GitHub PR into a branch, assumes the remote is `origin'
     fpr = "!f () { \
         if [[ -z \"$1\" ]]; then \
             echo \"usage: $ git fpr <PR Number>\"; \
             exit 1; \
         fi; \
         \
-        git fetch upstream pull/$1/head:pr-$1; \
+        git fetch origin pull/$1/head:pr-$1; \
     }; f"
 
     # Fetch a PR and checkout its branch
