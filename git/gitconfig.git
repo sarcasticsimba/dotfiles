@@ -24,10 +24,10 @@
     update = !git fetch origin && git rebase origin/$(git rev-parse --abbrev-ref HEAD) && git submodule update
     undo = reset --hard
 
-    # Update from origin/master
-    um = !git fetch origin && git rebase origin/master && git submodule update
-    # Update from upstream/master
-    uum = !git fetch upstream && git rebase upstream/master && git submodule update
+    # Update from origin/main
+    um = !git fetch origin && git rebase origin/main && git submodule update
+    # Update from upstream/main
+    uum = !git fetch upstream && git rebase upstream/main && git submodule update
     # Update from upstream/<current branch>
     uu = !git fetch upstream && git rebase upstream/$(git rev-parse --abbrev-ref HEAD) && git submodule update
 
