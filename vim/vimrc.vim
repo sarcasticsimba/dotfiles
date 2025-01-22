@@ -12,6 +12,7 @@ call vundle#begin()
     Plugin 'elmcast/elm-vim'
     Plugin 'neovimhaskell/haskell-vim'
     Plugin 'tfnico/vim-gradle'
+    Plugin 'jvirtanen/vim-hcl'
 
     " For markdown-preview, run `:call mkdp#util#install()'
     " Usage: `:MarkdownPreview'
