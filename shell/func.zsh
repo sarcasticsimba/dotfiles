@@ -42,3 +42,30 @@ notify()
 
     osascript -e "$str"
 }
+
+# Formats docker ps output and checks for downed containers
+# Warrants cleanup eventually
+dps()
+{
+    dockerps=$(docker ps --format "{{.Names}}\n\tContainer ID: {{.ID}}\n\tImage: {{.Image}}\n\tStatus: {{.Status}}\n\tPorts: {{.Ports}}")
+    dpsnames=$(docker ps --format "{{.Names}}")
+    ccount=$(docker ps -q | wc -l | awk '{print $1}')
+    echo "$dockerps"
+    echo "\e[32mContainer Count: $ccount\e[0m"
+
+    if [ -f "$HOME/.dps" ]; then
+        old_ccount=$(head -n 1 $HOME/.dps)
+        if ((old_ccount > ccount)); then
+            cdiff=$((old_ccount - ccount))
+            olddpsnames=$(tail -n +2 $HOME/.dps)
+
+            # gross
+            dpsdiff=$(echo "$olddpsnames" | sed 's/ \n/\n/g' | sort | uniq | comm -23 - <(echo "$dpsnames" | sed 's/ \n/\n/g' | sort | uniq))
+
+            echo "\e[35mINFO: $cdiff fewer container(s) since last run!\e[0m\n\e[34m$dpsdiff\e[0m"
+        fi
+    else
+        echo "No previous container record"
+    fi
+    echo "$ccount\n$dpsnames" > $HOME/.dps
+}
