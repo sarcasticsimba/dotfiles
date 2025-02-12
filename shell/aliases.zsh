@@ -25,7 +25,7 @@ alias wifinetwork="networksetup -getairportnetwork $WIFI_PORT"
 alias fdss="find . -name '*.DS_Store' -type f -delete -print"
 alias fuosx="sudo spctl --master-disable"
 alias dcc='docker compose'
-alias fuckdocker='docker system prune -a'
+alias dstopped='docker ps -a --filter "status=exited" --format "{{.Names}}"'
 alias gw='./gradlew'
 alias kc='kubectl'
 alias md='vim -c :MarkdownPreview'
