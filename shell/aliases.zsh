@@ -26,6 +26,7 @@ alias fdss="find . -name '*.DS_Store' -type f -delete -print"
 alias fuosx="sudo spctl --master-disable"
 alias dcc='docker compose'
 alias dstopped='docker ps -a --filter "status=exited" --format "{{.Names}}"'
+alias dlf='docker logs --follow'
 alias gw='./gradlew'
 alias kc='kubectl'
 alias md='vim -c :MarkdownPreview'
