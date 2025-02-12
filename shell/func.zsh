@@ -43,29 +43,29 @@ notify()
     osascript -e "$str"
 }
 
-# Formats docker ps output and checks for downed containers
-# Warrants cleanup eventually
+# Formats docker ps output and checks for container state change
+# Creates a file ~/.dps
 dps()
 {
-    dockerps=$(docker ps --format "{{.Names}}\n\tContainer ID: {{.ID}}\n\tImage: {{.Image}}\n\tStatus: {{.Status}}\n\tPorts: {{.Ports}}")
-    dpsnames=$(docker ps --format "{{.Names}}")
-    ccount=$(docker ps -q | wc -l | awk '{print $1}')
-    echo "$dockerps"
-    echo "\e[32mContainer Count: $ccount\e[0m"
+    docker ps --format "{{.Names}}\n\tContainer ID: {{.ID}}\n\tImage: {{.Image}}\n\tStatus: {{.Status}}\n\tPorts: {{.Ports}}"
+    dnames=$(docker ps --format "{{.Names}}")
+    ccount=$(echo "$dnames" | awk 'END {print NR}')
+    echo "\e[34mContainer Count: $ccount\e[0m"
 
     if [ -f "$HOME/.dps" ]; then
-        old_ccount=$(head -n 1 $HOME/.dps)
-        if ((old_ccount > ccount)); then
-            cdiff=$((old_ccount - ccount))
-            olddpsnames=$(tail -n +2 $HOME/.dps)
+        olddnames=$(cat $HOME/.dps)
 
-            # gross
-            dpsdiff=$(echo "$olddpsnames" | sed 's/ \n/\n/g' | sort | uniq | comm -23 - <(echo "$dpsnames" | sed 's/ \n/\n/g' | sort | uniq))
+        # gross
+        removed=$(comm -23 <(echo "$olddnames" | sort) <(echo "$dnames" | sort) | sed 's/^\t//; s/^/- /')
+        added=$(comm -13 <(echo "$olddnames" | sort) <(echo "$dnames" | sort) | sed 's/^\t//; s/^/+ /')
 
-            echo "\e[35mINFO: $cdiff fewer container(s) since last run!\e[0m\n\e[34m$dpsdiff\e[0m"
+        if [[ -n "$removed" || -n "$added" ]]; then
+            echo "\e[35m\nINFO: container configuration changed!\e[0m"
+            [[ -n "$removed" ]] && echo "\e[31m$removed\e[0m"
+            [[ -n "$added" ]] && echo "\e[32m$added\e[0m"
         fi
     else
         echo "No previous container record"
     fi
-    echo "$ccount\n$dpsnames" > $HOME/.dps
+    echo "$dnames" > $HOME/.dps
 }
