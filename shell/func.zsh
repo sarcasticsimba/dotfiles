@@ -43,6 +43,15 @@ notify()
     osascript -e "$str"
 }
 
+dlf()
+{
+    if [ -z "$1" ]; then
+        docker ps -q | xargs -L 1 -P $(docker ps -q | wc -l) -I {} bash -c "docker logs --since 30s -f {} | awk -v container=\$(docker inspect --format \"{{.Name}}\" {} | tr -d \"/\") '{ print \"\033[35m[\" container \"]\033[0m \" \$0 }'"
+    else
+        docker logs --follow $1 | sed "s/^/\x1b[35m[$1]\x1b[0m /"
+    fi
+}
+
 # Formats docker ps output and checks for container state change
 # Creates a file ~/.dps
 dps()

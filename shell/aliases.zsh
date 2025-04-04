@@ -32,7 +32,6 @@ alias jql='jq -C | less -R'
 
 alias dcc='docker compose'
 alias dstopped='docker ps -a --filter "status=exited" --format "{{.Names}}"'
-alias dlf='docker logs --follow'
 
 # docker ps -q → get all container IDs
 # xargs
@@ -46,4 +45,5 @@ alias dlf='docker logs --follow'
 # | container=foo → store a variable "container"
 # | docker inspect … | tr … → get container name from id to use as foo, trim slash
 # | print … → print the log lines prefixed with [container] in purple
-alias dlogs='docker ps -q | xargs -L 1 -P $(docker ps -q | wc -l) -I {} bash -c "docker logs --since 30s -f {} | awk -v container=\$(docker inspect --format \"{{.Name}}\" {} | tr -d \"/\") '\''{ print \"\033[35m[\" container \"]\033[0m    \" \$0 }'\''"'
+# Moving this to dlf() in func.zsh if it's given no arguments, leaving this here temporarily in case the muscle memory is too deep-rooted
+# alias dlogs='docker ps -q | xargs -L 1 -P $(docker ps -q | wc -l) -I {} bash -c "docker logs --since 30s -f {} | awk -v container=\$(docker inspect --format \"{{.Name}}\" {} | tr -d \"/\") '\''{ print \"\033[35m[\" container \"]\033[0m    \" \$0 }'\''"'
