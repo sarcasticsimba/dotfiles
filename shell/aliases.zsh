@@ -10,6 +10,7 @@ alias ls='ls -FG'
 alias sl='ls'
 alias watch='date +"%r"'
 alias utc='date -u +"%Y-%m-%dT%H:%M:%SZ"'
+alias utcd='date -u +"%Y-%m-%d"'
 alias battery='sh $HOME/dotfiles/ncscripts/battery.sh'
 alias notes='cd $HOME/Documents/notes'
 alias tat='tmux attach -t'
@@ -32,6 +33,8 @@ alias jql='jq -C | less -R'
 
 alias dcc='docker compose'
 alias dstopped='docker ps -a --filter "status=exited" --format "{{.Names}}"'
+
+alias mvim='/Applications/MacVim.app/Contents/bin/mvim'
 
 # docker ps -q → get all container IDs
 # xargs
