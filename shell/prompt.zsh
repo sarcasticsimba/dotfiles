@@ -39,7 +39,8 @@ build_prompt () {
         # Batch 3 in prompt - other
         git_untracked_new_files=$(echo $gsp | grep "^??" | wc -l | awk '{print $1}')
         git_assumed_unchanged=$(git ls-files -v | grep ^S | wc -l | awk '{print $1}')
-        batch_3_sum=$((git_untracked_new_files + git_assumed_unchanged))
+        git_renamed_files=$(echo $gsp | grep "^R " | wc -l | awk '{print $1}')
+        batch_3_sum=$((git_untracked_new_files + git_assumed_unchanged + git_renamed_files))
 
 
         branch="%F{blue}$branch"
@@ -61,7 +62,7 @@ build_prompt () {
 
         if ((batch_3_sum != 0)) then
             body="$body %F{black}%B|%b%f"
-            body="$body %F{cyan}+$git_untracked_new_files%f  %F{blue}⊘$git_assumed_unchanged%f"
+            body="$body %F{cyan}+$git_untracked_new_files%f  %F{blue}⊘$git_assumed_unchanged%f  %F{green}→$git_renamed_files%f"
         fi
 
         PROMPT="$preamble$body$postamble$input_prompt"
