@@ -39,7 +39,7 @@ build_prompt () {
         # Batch 3 in prompt - other
         git_untracked_new_files=$(echo $gsp | grep "^??" | wc -l | awk '{print $1}')
         git_assumed_unchanged=$(git ls-files -v | grep ^S | wc -l | awk '{print $1}')
-        git_renamed_files=$(echo $gsp | grep "^R " | wc -l | awk '{print $1}')
+        git_renamed_files=$(echo $gsp | grep "^R" | wc -l | awk '{print $1}')
         batch_3_sum=$((git_untracked_new_files + git_assumed_unchanged + git_renamed_files))
 
 
