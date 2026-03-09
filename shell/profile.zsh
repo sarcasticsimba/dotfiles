@@ -5,3 +5,4 @@ export EDITOR=vim
 
 # ghcup-env
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
+. "$HOME/.cargo/env"

@@ -39,8 +39,13 @@ vim:
 	@ln -s ${HOME}/dotfiles/vim/gvimrc.vim ${HOME}/.gvimrc
 	@vim +PluginInstall +qall
 	@mkdir -p ${HOME}/.config/nvim
-	@ln -s ${HOME}/dotfiles/vim/nvim.vim ${HOME}/.config/nvim/init.vim
+	#@ln -s ${HOME}/dotfiles/vim/nvim.vim ${HOME}/.config/nvim/init.vim
 	@echo "symlinked vim stuff"
+
+nvim:
+	@ln -s ${HOME}/dotfiles/nvim ${HOME}/.config/nvim
+	@touch ${HOME}/dotfiles/nvim/ascii-header.txt
+	@echo "symlinked nvim stuff"
 
 other:
 	@echo "TODO: [ ] Set terminal colors"

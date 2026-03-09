@@ -2,3 +2,5 @@ private.zsh
 .DS_Store
 *.swp
 git/gitconfig.local.git
+nvim/ascii-header.txt
+swiftbar/

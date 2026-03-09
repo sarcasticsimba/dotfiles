@@ -14,6 +14,7 @@ call vundle#begin()
     Plugin 'tfnico/vim-gradle'
     Plugin 'jvirtanen/vim-hcl'
     Plugin 'gleam-lang/gleam.vim'
+    Plugin 'elixir-editors/vim-elixir'
 
     " For markdown-preview, run `:call mkdp#util#install()'
     " Usage: `:MarkdownPreview'
