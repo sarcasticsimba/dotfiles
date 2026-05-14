@@ -1,4 +1,4 @@
-.PHONY: info all git vim shell tmux mac brew karabiner other
+.PHONY: info all git vim nvim shell tmux mac brew karabiner other
 
 info:
 	@echo "all: universal configs - git, shell, tmux, vim" 
@@ -38,8 +38,6 @@ vim:
 	@ln -s ${HOME}/dotfiles/vim/vimrc.vim ${HOME}/.vimrc
 	@ln -s ${HOME}/dotfiles/vim/gvimrc.vim ${HOME}/.gvimrc
 	@vim +PluginInstall +qall
-	@mkdir -p ${HOME}/.config/nvim
-	#@ln -s ${HOME}/dotfiles/vim/nvim.vim ${HOME}/.config/nvim/init.vim
 	@echo "symlinked vim stuff"
 
 nvim:
