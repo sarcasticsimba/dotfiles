@@ -15,6 +15,7 @@ call vundle#begin()
     Plugin 'jvirtanen/vim-hcl'
     Plugin 'gleam-lang/gleam.vim'
     Plugin 'elixir-editors/vim-elixir'
+    Plugin 'jparise/vim-graphql'
 
     " For markdown-preview, run `:call mkdp#util#install()'
     " Usage: `:MarkdownPreview'
@@ -99,3 +100,5 @@ endif
 
 " Use tabs only in Makefiles
 autocmd FileType make setlocal noexpandtab
+
+set mmp=5000
