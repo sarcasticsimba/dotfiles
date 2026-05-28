@@ -120,6 +120,18 @@ return {
           condition = { filetype = { "python" } },
           tags = { TAG.TEST },
         },
+
+        {
+          name = "go run .",
+          builder = function()
+            save_all_buffers()
+            return {
+              cmd = { "go", "run", "." },
+              components = { "default" },
+            }
+          end,
+          condition = { filetype = { "go" } },
+        },
       }
 
       vim.defer_fn(function()
