@@ -187,7 +187,8 @@ return {
     end,
     lazy = false,
     init = function()
-      vim.opt.guifont = "Maple Mono NF CN,Maple Mono NF,Liga SFMono Nerd Font,Hasklig,SF Mono,Menlo,Monaco,Courier New,monospace:h15"
+      vim.opt.guifont =
+        "Maple Mono NF CN,Maple Mono NF,Liga SFMono Nerd Font,Hasklig,SF Mono,Menlo,Monaco,Courier New,monospace:h15"
       setup_terminal_colors()
       setup_keymaps()
     end,
