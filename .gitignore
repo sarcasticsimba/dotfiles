@@ -1,6 +1,8 @@
 private.zsh
+nvim/lua/plugins/private.lua
 .DS_Store
 *.swp
 git/gitconfig.local.git
 nvim/ascii-header.txt
 swiftbar/
+*.ignore
