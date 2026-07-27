@@ -121,6 +121,11 @@ local function setup_keymaps()
   vim.keymap.set("n", "<D-/>", "gccj", { remap = true, desc = "⌘/ = Toggle comment and move down" })
   vim.keymap.set("v", "<D-/>", "gc", { remap = true, desc = "⌘/ = Toggle comment (visual)" })
 
+  -- ⌘O - Find files
+  vim.keymap.set({ "n", "t" }, "<D-o>", function()
+    Snacks.picker.files()
+  end, { desc = "⌘O = Find files" })
+
   -- This uses the :Dashboard set in keymaps.lua
   vim.keymap.set({ "n", "t" }, "<D-H>", "<cmd>Dashboard<CR>", { desc = "⌘⇧H = Open Dashboard" })
 end
